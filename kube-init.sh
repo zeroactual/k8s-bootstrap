@@ -59,3 +59,8 @@ apt-mark hold kubelet kubeadm kubectl
 
 ## Bootstrap cluster
 kubeadm init --pod-network-cidr=10.0.0.0/8
+
+
+mkdir -p $HOME/.kube
+cp -i /etc/kubernetes/admin.conf $HOME/.kube/conf
+chown $(id -u):$(id -g) $HOME/.kube/config
