@@ -6,6 +6,8 @@ if [[ $UID != 0 ]]; then
     exit 1
 fi
 
+rm -Rf ~/.kube
+
 ## Turn off swap
 swapoff -a
 sed -e '/swap/s/^/#/g' -i /etc/fstab
@@ -60,7 +62,7 @@ apt install -y kubelet kubeadm kubectl
 apt-mark hold kubelet kubeadm kubectl
 
 ## Bootstrap cluster
-kubeadm init --pod-network-cidr=10.0.0.0/8
+kubeadm init --pod-network-cidr=192.168.0.0/16
 
 
 mkdir -p $HOME/.kube
